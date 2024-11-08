@@ -29,7 +29,7 @@ public class CharacterDollInventoryJpaRepository {
         if (characterDollInventoryId == null) {
             return insert(characterDollInventory, tClass);
         } else {
-            return update(characterDollInventoryId, tClass);
+            return update(dto, tClass);
         }
 
     }
@@ -40,8 +40,18 @@ public class CharacterDollInventoryJpaRepository {
         return createInstance(characterDollInventory, tClass);
     }
 
-    private <T> T update(Long characterDollInventoryId, Class<T> tClass) {
-        return findByCharacterDollInventoryId(characterDollInventoryId, tClass);
+    private <T> T update(CharacterDollInventoryDTO dto, Class<T> tClass) {
+        Long characterDollInventoryId = dto.getCharacterDollInventoryId();
+        CharacterDollInventory characterDollInventory = findByCharacterDollInventoryId(characterDollInventoryId);
+        characterDollInventory.allUpdate(
+                dto.getCharacterDollInventoryId(),
+                dto.getCharacterDollName(),
+                dto.getCharacterDollCount()
+        );
+
+        em.merge(characterDollInventory);
+
+        return createInstance(characterDollInventory, tClass);
     }
 
 
@@ -57,6 +67,23 @@ public class CharacterDollInventoryJpaRepository {
 
         try {
             return tTypedQuery.getSingleResult();
+        } catch (NoResultException e) {
+            throw new IllegalArgumentException("없는 인형 아이디 입니다.");
+        }
+    }
+
+    private CharacterDollInventory findByCharacterDollInventoryId(Long characterDollInventoryId) {
+        String jpql = """
+                SELECT cdi\s
+                FROM CharacterDollInventory cdi\s
+                WHERE cdi.characterDollInventoryId = :characterDollInventoryId
+                """;
+
+        TypedQuery<CharacterDollInventory> characterDollInventoryTypedQuery = em.createQuery(jpql, CharacterDollInventory.class);
+        characterDollInventoryTypedQuery.setParameter("characterDollInventoryId", characterDollInventoryId);
+
+        try {
+            return characterDollInventoryTypedQuery.getSingleResult();
         } catch (NoResultException e) {
             throw new IllegalArgumentException("없는 인형 아이디 입니다.");
         }

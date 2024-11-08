@@ -29,4 +29,12 @@ public class CharacterDollInventory {
         this.characterDollName = characterDollName;
         this.characterDollCount = characterDollCount;
     }
+
+    public void allUpdate(
+            Long characterDollInventoryId,
+            String characterDollName,
+            Long characterDollCount
+    ){
+
+    }
 }

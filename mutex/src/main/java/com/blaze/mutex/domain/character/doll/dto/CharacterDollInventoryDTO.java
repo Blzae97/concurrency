@@ -17,4 +17,8 @@ public class CharacterDollInventoryDTO {
         this.characterDollName = characterDollName;
         this.characterDollCount = characterDollCount;
     }
+
+    public void decreaseCharacterDollCount() {
+        this.characterDollCount -= 1;
+    }
 }
