@@ -55,24 +55,25 @@ public class CharacterDollInventoryJpaRepository {
     }
 
 
-    public <T> T findByCharacterDollInventoryId(Long characterDollInventoryId, Class<T> tClass) {
+    public CharacterDollInventoryDTO findDTOByCharacterDollInventoryId(Long characterDollInventoryId) {
         String jpql = """
                 SELECT cdi\s
                 FROM CharacterDollInventory cdi\s
                 WHERE cdi.characterDollInventoryId = :characterDollInventoryId
                 """;
 
-        TypedQuery<T> tTypedQuery = em.createQuery(jpql, tClass);
-        tTypedQuery.setParameter("characterDollInventoryId", characterDollInventoryId);
+        TypedQuery<CharacterDollInventory> characterDollInventoryTypedQuery = em.createQuery(jpql, CharacterDollInventory.class);
+        characterDollInventoryTypedQuery.setParameter("characterDollInventoryId", characterDollInventoryId);
 
         try {
-            return tTypedQuery.getSingleResult();
+            CharacterDollInventory singleResult = characterDollInventoryTypedQuery.getSingleResult();
+            return CharacterDollInventoryDomainMapper.toCharacterDollInventoryDTO(singleResult);
         } catch (NoResultException e) {
             throw new IllegalArgumentException("없는 인형 아이디 입니다.");
         }
     }
 
-    private CharacterDollInventory findByCharacterDollInventoryId(Long characterDollInventoryId) {
+    public CharacterDollInventory findByCharacterDollInventoryId(Long characterDollInventoryId) {
         String jpql = """
                 SELECT cdi\s
                 FROM CharacterDollInventory cdi\s

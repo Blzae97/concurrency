@@ -34,7 +34,9 @@ public class CharacterDollInventory {
             Long characterDollInventoryId,
             String characterDollName,
             Long characterDollCount
-    ){
-
+    ) {
+        this.characterDollInventoryId = characterDollInventoryId;
+        this.characterDollName = characterDollName;
+        this.characterDollCount = characterDollCount;
     }
 }

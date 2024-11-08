@@ -15,4 +15,13 @@ public class CharacterDollInventoryResponse {
         this.characterDollName = characterDollName;
         this.characterDollCount = characterDollCount;
     }
+
+    @Override
+    public String toString() {
+        return "CharacterDollInventoryResponse{" +
+                "characterDollInventoryId=" + characterDollInventoryId +
+                ", characterDollName='" + characterDollName + '\'' +
+                ", characterDollCount=" + characterDollCount +
+                '}';
+    }
 }

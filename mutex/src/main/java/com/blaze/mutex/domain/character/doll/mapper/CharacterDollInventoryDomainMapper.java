@@ -11,4 +11,12 @@ public class CharacterDollInventoryDomainMapper {
                 .characterDollCount(c.getCharacterDollCount())
                 .build();
     }
+
+    public static CharacterDollInventoryDTO toCharacterDollInventoryDTO(CharacterDollInventory singleResult){
+        return CharacterDollInventoryDTO.builder()
+                .characterDollInventoryId(singleResult.getCharacterDollInventoryId())
+                .characterDollName(singleResult.getCharacterDollName())
+                .characterDollCount(singleResult.getCharacterDollCount())
+                .build();
+    }
 }
