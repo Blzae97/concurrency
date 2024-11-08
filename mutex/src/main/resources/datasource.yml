@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        timezone:
+          default_storage: NORMALIZE
+
+  datasource:
+    driverClass: org.mariadb.jdbc.Driver
+    url: 
+    database:
+    username:
+    password:
+    hikari:
+      poolName: Hikari
+      maximum-pool-size: 10
+      max-lifetime: 1800000
+      connection-timeout: 30000
