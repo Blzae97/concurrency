@@ -16,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 
 @Repository
 public class CharacterDollInventoryJpaRepository {
-    @PersistenceContext(unitName = "primaryEntityManager")
+    @PersistenceContext
     private EntityManager em;
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass().getSimpleName());
