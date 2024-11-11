@@ -1,7 +1,0 @@
-server:
-  port: 10000
-  servlet:
-    encoding:
-      force: true
-      force-response: true
-      charset: UTF-8
