@@ -61,4 +61,8 @@ public class BankAccount {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+    public void updateBalance(BigDecimal money) {
+        this.balance = money;
+    }
 }
