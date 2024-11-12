@@ -3,6 +3,7 @@ rootProject.name = 'concurrencyStudy'
 include 'mutex'
 include 'semaphore'
 include 'optimistic'
+include 'pessimistic'
 
 def includeProject(String name, String path){
     include(name)
